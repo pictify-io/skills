@@ -1,7 +1,7 @@
 {
   "name": "@pictify/agent-skill",
   "version": "1.0.0",
-  "description": "Pictify HTML-to-Image skill for Claude Code and other AI agents",
+  "description": "Agent skills for Pictify — generate images from HTML/CSS with AI agents. OG images, social cards, banners, screenshots, certificates, and more.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -9,21 +9,34 @@
   },
   "files": [
     "install.js",
-    "skills/"
+    "skills/",
+    "README.md"
   ],
   "keywords": [
     "pictify",
     "claude-code",
+    "cursor",
+    "windsurf",
     "agent-skill",
+    "ai-agent",
     "html-to-image",
     "image-generation",
     "og-image",
     "social-card",
-    "ai-agent"
+    "banner",
+    "screenshot",
+    "skills"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/pictify-io/pictify-agent-skills.git"
+    "url": "https://github.com/pictify-io/skills.git"
   },
-  "homepage": "https://pictify.io"
+  "homepage": "https://pictify.io",
+  "author": {
+    "name": "Pictify",
+    "url": "https://pictify.io"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }

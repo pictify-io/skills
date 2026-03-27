@@ -1,5 +1,8 @@
 # Pictify Skills
 
+[![npm version](https://img.shields.io/npm/v/@pictify/agent-skill.svg)](https://www.npmjs.com/package/@pictify/agent-skill)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Agent skills for [Pictify](https://pictify.io) — generate images from HTML/CSS with AI agents.
 
 OG images, social cards, banners, screenshots, certificates, product images, email headers, and presentation slides — all from natural language.
@@ -8,22 +11,38 @@ Works with Claude Code, Cursor, Windsurf, and any agent that supports the [open 
 
 ## Install
 
-### Using the skills CLI (recommended)
+### Claude Code
+
+**Option 1 — Skills CLI (recommended)**
 
 ```bash
 npx skills add pictify-io/skills
 ```
 
-### Direct install via npm
+**Option 2 — Direct install via npm**
 
 ```bash
 npx @pictify/agent-skill
 ```
 
-### Project-local install
+**Option 3 — Project-local** (installs to `.claude/skills/` in your project)
 
 ```bash
 npx @pictify/agent-skill --project
+```
+
+### Cursor
+
+```bash
+npx @pictify/agent-skill
+```
+
+The skill installs to `~/.claude/skills/pictify/`. Cursor picks it up automatically if you have skills discovery enabled.
+
+### Windsurf
+
+```bash
+npx @pictify/agent-skill
 ```
 
 ### Uninstall
@@ -31,6 +50,22 @@ npx @pictify/agent-skill --project
 ```bash
 npx @pictify/agent-skill --uninstall
 ```
+
+## Setup
+
+Get your Pictify API key:
+
+1. Sign up at [pictify.io](https://pictify.io)
+2. Go to [API Tokens](https://pictify.io/dashboard/api-tokens)
+3. Create a token
+
+Set it in your environment:
+
+```bash
+export PICTIFY_API_KEY=your_token_here
+```
+
+The skill automatically detects the key from the environment. No additional configuration needed.
 
 ## What it does
 
@@ -70,22 +105,6 @@ The skill handles:
 | `rules/css-patterns.md` | CSS that renders reliably in Pictify |
 | `rules/fonts-and-typography.md` | Font loading, pairings, and type scales |
 
-## Setup
-
-Get your Pictify API key:
-
-1. Sign up at [pictify.io](https://pictify.io)
-2. Go to [API Tokens](https://pictify.io/dashboard/api-tokens)
-3. Create a token
-
-Set it in your environment:
-
-```bash
-export PICTIFY_API_KEY=your_token_here
-```
-
-The skill automatically detects the key from the environment. No additional configuration needed.
-
 ## How it works
 
 The skill uses the Pictify HTML-to-Image API (`POST https://api.pictify.io/image`). It instructs the AI agent to:
@@ -96,6 +115,14 @@ The skill uses the Pictify HTML-to-Image API (`POST https://api.pictify.io/image
 4. Handle errors with specific recovery actions
 
 No MCP server required. The skill makes direct HTTP calls to the Pictify API.
+
+## Links
+
+- [Pictify](https://pictify.io) — Image generation API
+- [API Docs](https://pictify.io/dashboard/api-tokens) — Get your API key
+- [npm](https://www.npmjs.com/package/@pictify/agent-skill) — Package on npm
+- [skills.sh](https://skills.sh) — Open agent skills ecosystem
+- [@pictify/mcp-server](https://www.npmjs.com/package/@pictify/mcp-server) — Pictify MCP server (for full API access including templates, GIFs, PDFs, and A/B testing)
 
 ## License
 
