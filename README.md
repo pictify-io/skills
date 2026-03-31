@@ -1,5 +1,7 @@
 # Pictify Skills
 
+![Pictify Agent Skill](https://media.pictify.io/cx2ht-1774936952922.png)
+
 [![npm version](https://img.shields.io/npm/v/@pictify/agent-skill.svg)](https://www.npmjs.com/package/@pictify/agent-skill)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
