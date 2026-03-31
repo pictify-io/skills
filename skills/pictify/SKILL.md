@@ -73,9 +73,57 @@ curl -X POST https://api.pictify.io/image \
 
 The `url` is a CDN-backed hosted image URL ready for use.
 
-## Critical rule
+## Critical rules
 
+### 1. Pre-flight validation
 ALWAYS read [rules/validation-checklist.md](rules/validation-checklist.md) and run through the pre-flight checklist before every API call. This prevents the #1 failure: images rendering at wrong dimensions.
+
+### 2. Interactive design brief — ALWAYS collect before rendering
+
+**Never generate an image without first presenting design decisions to the user.** The goal is to get the desired output in one render, not iterate through trial and error. Before every image generation, present the user with a structured design brief containing options for each decision.
+
+**How to present options:**
+- For each design decision, present 2-3 contextually relevant options (not generic lists). Infer these from the user's request, the use case, industry, and audience.
+- Use a clear, scannable format. Group decisions logically.
+- Include a recommended option with a brief reason why, so the user can quickly approve or override.
+- The user should be able to respond in one message (e.g., "go with your recommendations" or "option B for color, option A for everything else").
+
+**What to always cover (adapt to use case):**
+1. **Dimensions / format** — Present the right preset(s) for the use case. If the platform is ambiguous, present platform options with their dimensions.
+2. **Design language / brand** — If a brand is mentioned, confirm the inferred brand style. If not, present 2-3 style directions derived from the context (e.g., "minimal SaaS" vs. "bold startup" vs. "editorial"). Ask the user which direction to follow.
+3. **Color palette** — Present 2-3 palette options inferred from the brand, industry, or mood. Show specific hex colors when possible.
+4. **Typography** — Present 2-3 font pairings appropriate to the tone (e.g., "Inter + Inter = clean/modern" vs. "Playfair Display + Source Sans Pro = editorial").
+5. **Layout** — Present 2-3 layout approaches suited to the content type (e.g., "centered text on gradient" vs. "left text / right image split").
+6. **Visual elements** — Ask about assets: logo URLs, product images, photos, icons. These can't be inferred.
+
+**What NOT to ask about:**
+- Copy / text content — write this yourself from the user's input.
+- Technical rendering details (CSS, HTML structure, API params) — handle these silently.
+
+**Example interaction format:**
+```
+Here's the design brief for your OG image. Pick your preferences or say "go with recommendations":
+
+📐 Dimensions: 1200 x 630px (standard OG — works on all platforms)
+
+🎨 Color palette:
+  → A. Deep navy + electric blue accent (recommended — matches fintech/trust tone)
+  → B. White + soft gray with blue accent (lighter, more approachable)
+  → C. Dark charcoal + green accent (growth/money angle)
+
+🔤 Typography:
+  → A. Inter 700 / Inter 400 (recommended — clean, modern, highly legible)
+  → B. Space Grotesk 700 / Inter 400 (techy, distinctive)
+
+🖼 Layout:
+  → A. Centered headline + subtitle over gradient (recommended — clean, bold)
+  → B. Left-aligned text + abstract shape accents on right
+
+🏷 Assets needed:
+  → Do you have a logo URL to include? (optional — I'll design without one if not)
+```
+
+**When the user provides enough direction to skip some decisions** (e.g., they specify brand colors and say "minimal"), confirm your interpretation briefly and only present options for remaining open decisions. Do not re-ask about things the user has already answered.
 
 ## How to use
 

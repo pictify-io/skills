@@ -9,19 +9,21 @@ metadata:
 
 Email headers and banners are images embedded at the top of marketing emails, newsletters, and transactional emails. They have unique constraints because email clients have limited CSS support.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Email type** — The visual treatment differs significantly. A flash sale email needs urgency (bold reds/oranges, large discount number); a weekly newsletter header needs brand consistency (logo, muted colors, issue number); a product launch email needs excitement (gradient, product visual, bold headline). Infer from context or ask.
-- **Brand assets** — Logo URL? Brand colors? These are especially important for email headers since they represent the brand in the inbox.
-- **Dark mode compatibility** — Ask if their audience likely uses dark mode email clients. This affects background color choices (avoid pure white, use light gray instead).
-- **Retina** — Should the image be generated at 2x for sharp display on high-DPI screens? Default to yes for consumer-facing emails.
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: the email type/purpose AND brand colors or a logo. That's enough to make confident design choices.
-- **Ask** if the email type is ambiguous (is it a sale or a newsletter?) or if there's no brand context at all. Ask about brand colors/logo first — it's the highest-leverage missing input for email headers.
+**Email header-specific decisions to present:**
+1. **Email type** — If ambiguous, present options: newsletter header, sale/promotion banner, product launch, transactional, event invitation. Each has a different visual treatment.
+2. **Dimensions** — Present relevant options from the dimensions table below. Recommend standard (600x200) for broad compatibility, but present wider/taller options if the email type warrants it.
+3. **Color palette** — Present 2-3 palette options inferred from the email type. Flash sale → urgency colors (reds/oranges); newsletter → brand-consistent muted tones; product launch → exciting gradients. Always note dark mode considerations (avoid pure white backgrounds → use light gray instead).
+4. **Typography** — Present 2-3 font pairings. Email headers need highly legible fonts at the sizes they'll be viewed.
+5. **Layout** — Present 2-3 layout options suited to the email type:
+   - Newsletter → logo + issue title + date in a clean horizontal bar
+   - Sale → large discount number + headline + urgency element
+   - Product launch → product name + visual + tagline
+6. **Retina** — Present standard (1x) vs. retina (2x) rendering option. Recommend 2x for consumer-facing emails.
+7. **Assets** — Ask for logo URL and brand colors. These are critical for email headers since they represent the brand in the inbox.
 
 ## Dimensions
 
@@ -129,4 +131,4 @@ Email images should be simpler than web images:
 5. File format is jpeg for smaller file size (critical for email deliverability)
 6. For retina: verify the image renders correctly at 2x dimensions
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

@@ -9,19 +9,18 @@ metadata:
 
 Product images for e-commerce, catalogs, comparison graphics, and pricing displays. These images showcase products with their details and are often generated at scale.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Product image asset** — Does the user have a product photo URL to include? This is critical — a product card with a real photo looks completely different from a text-only design.
-- **Visual style** — Based on the product type and brand, suggest appropriate aesthetics. A luxury watch needs a different treatment than a SaaS pricing card.
-- **Background** — White/clean (standard e-commerce), branded colors, lifestyle context, or something else?
-- **What to emphasize** — Price? Features? Comparison against competitors? This shapes the layout.
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: the product AND a product image URL (or explicitly said no image). That's enough to make confident design choices.
-- **Ask** if the user hasn't mentioned whether they have a product image — this is the single highest-leverage question for product images, since the entire layout depends on it.
+**Product image-specific decisions to present:**
+1. **Image type and dimensions** — Present relevant options: single product card (800x800), comparison grid (1200x800), catalog card (600x800), feature highlight (1200x630). Infer from context.
+2. **Visual style** — Present 2-3 style directions inferred from the product type. A luxury product → dark, premium, minimal; a SaaS pricing card → clean, modern, trust-building; a consumer product → bright, approachable, lifestyle-oriented.
+3. **Background** — Present options: white/clean (standard e-commerce), branded colors, gradient, or lifestyle context.
+4. **Color palette** — Present 2-3 palette options suited to the product category and brand.
+5. **Typography** — Present 2-3 font pairings. Product names need strong, readable fonts; pricing needs clear numerical fonts; feature text needs clean body fonts.
+6. **Content emphasis** — Present what to highlight: price-first layout, features-first layout, or image-dominant layout. This shapes the hierarchy.
+7. **Assets** — Ask for product photo URL(s) and logo. Product images dramatically change the layout, so this is critical.
 
 ## Dimensions
 
@@ -102,4 +101,4 @@ Or as a background:
 4. Background is clean and doesn't compete with the product
 5. All external image URLs resolve correctly
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

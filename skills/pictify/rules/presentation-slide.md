@@ -9,19 +9,17 @@ metadata:
 
 Generate individual presentation slides as images. Useful for pitch decks, conference talks, course materials, and social media carousels (slide-style posts on LinkedIn and Instagram).
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Light or dark theme** — Dark backgrounds project better on screens; light backgrounds print better. Suggest based on context (conference talk → dark, printed handout → light).
-- **Color scheme** — Based on the topic and audience, suggest an appropriate palette. A startup pitch deck has a different energy than an academic lecture.
-- **Aspect ratio** — 16:9 is standard. Ask only if the user's context suggests otherwise (e.g., social media carousel → 1:1).
-- **Slide type** — Is this a title slide, content slide, data slide, quote slide, or section divider? Different types need different layouts. Infer from context when possible.
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: the topic/content AND any visual direction (dark/light, color scheme, or mood). Default to dark theme at 1920x1080 if no visual preference is given — it's the safest default for screen presentations.
-- **Ask** if the user gives only a topic with zero visual context AND you can't confidently infer the right style (e.g., "make me a slide" with no topic). Ask about light/dark theme — it's the single highest-leverage design decision for slides.
+**Presentation slide-specific decisions to present:**
+1. **Theme** — Present light vs. dark with a recommendation based on context (conference talk → dark recommended, printed handout → light recommended).
+2. **Aspect ratio** — Default to 16:9 (1920x1080). Only present alternatives if context suggests it (social media carousel → 1:1, legacy projector → 4:3).
+3. **Color scheme** — Present 2-3 palette options inferred from the topic and audience. A startup pitch deck → bold and energetic; an academic lecture → muted and professional; a creative portfolio → vibrant and distinctive.
+4. **Typography** — Present 2-3 font pairings suited to the presentation style. Conference talks → large, bold, high-impact; corporate decks → clean and professional; creative decks → distinctive display fonts.
+5. **Slide type and layout** — Infer the slide type (title, content, data, quote, section divider) from context and present the appropriate layout options for that type.
+6. **Assets** — Ask if they have a logo, company mark, or any images to include on the slide.
 
 ## Dimensions
 
@@ -105,4 +103,4 @@ When generating multiple slides for a deck:
 5. High contrast between text and background
 6. Headlines are short (6 words or fewer)
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

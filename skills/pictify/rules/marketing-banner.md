@@ -9,19 +9,20 @@ metadata:
 
 Marketing banners include ad creatives, promotional graphics, hero images, sale announcements, and any image designed to drive a specific action.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Where it will be displayed** — This determines dimensions. Website hero? Sidebar ad? YouTube thumbnail? If unclear, ask.
-- **Visual tone** — Based on the promotion or product, suggest contextually appropriate color and style directions. A sale banner needs urgency; a brand awareness banner needs polish.
-- **Product visual or imagery** — Does the user have a product screenshot, photo, or illustration URL to include? If so, ask for it. If not, design with text and shapes only.
-- **Brand identity** — Do they have brand colors, a logo URL, or existing style guidelines to match?
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: where the banner will be displayed (determines dimensions) AND the promotion/message AND any visual direction (brand colors, tone words, imagery). That's enough.
-- **Ask** if the display location is missing (dimensions depend on it) or if there's zero brand/visual context. Ask about the single most impactful missing input — display location first, then brand identity.
+**Marketing banner-specific decisions to present:**
+1. **Display location and dimensions** — Present relevant size options from the dimensions table below. If the user hasn't specified where the banner will be used, present the most common options grouped by category (web ads, website hero, social/YouTube).
+2. **Visual tone** — Present 2-3 tone directions inferred from the promotion type. A sale/discount banner → urgency (bold reds/oranges, large discount number); a brand awareness banner → polish and sophistication; a product launch → excitement (gradients, bold headline).
+3. **Color palette** — Present 2-3 palette options. Apply color psychology relevant to marketing: red/orange for urgency, blue for trust, green for growth, black for luxury. Match to the promotion's intent.
+4. **Typography** — Present 2-3 font pairings suited to the banner type. Ad banners need heavy, impactful fonts; hero banners can be more refined.
+5. **Layout** — Present 2-3 layout approaches suited to the banner dimensions:
+   - Wide banners → horizontal split (image left + text right) or text over full-width image
+   - Square/rectangle → centered vertical stack (headline → graphic → CTA)
+   - Vertical → stacked (logo → headline → image → CTA)
+6. **Assets** — Ask for product screenshot/photo URL, logo URL, and any brand guidelines they want to match.
 
 ## Common Dimensions
 
@@ -118,4 +119,4 @@ For generating multiple banner sizes from the same content, make separate `POST 
 4. Brand logo/name is present
 5. For ad banners: confirm the design looks good at 1:1 scale (not zoomed in)
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

@@ -9,19 +9,17 @@ metadata:
 
 Formal documents and credentials rendered as images. These have specific layout conventions.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Formality level** — Based on the context (academic degree vs. workshop completion vs. fun team badge), suggest an appropriate visual tone. A university certificate needs a different aesthetic than a hackathon badge.
-- **Visual elements** — Does the user have a logo URL, seal image, or photo to include? Ask for any image assets they want embedded.
-- **Color and style** — Suggest contextually appropriate directions based on the credential type and organization. Don't offer generic options.
-- **Orientation** — If not obvious from context, ask whether landscape or portrait fits better.
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: the credential type AND the context/organization. The formality and style can be confidently inferred — e.g., "certificate for completing our Python bootcamp" → modern tech-education style.
-- **Ask** if the user has image assets (logo, seal, photo) they want included — these can't be inferred. Also ask if the credential type is ambiguous (badge vs. certificate vs. ID card).
+**Certificate/badge-specific decisions to present:**
+1. **Credential type** — If ambiguous, present options: certificate, badge, ID card, event pass. Each has a different layout convention.
+2. **Orientation and dimensions** — Present landscape vs. portrait with a recommendation based on the credential type (certificates → landscape, ID cards → portrait, badges → square).
+3. **Formality and style** — Present 2-3 style directions inferred from the context. A university certificate → classic/formal (serif fonts, borders, gold accents); a bootcamp certificate → modern/tech (clean sans-serif, minimal, bold accents); a fun team badge → playful (rounded shapes, bright colors).
+4. **Color palette** — Present 2-3 palette options suited to the formality level and organization type.
+5. **Typography** — Present 2-3 font pairings matching the formality. Formal → serif headlines (Playfair Display, Lora) with sans-serif body; modern → geometric sans-serif throughout; playful → rounded/friendly fonts.
+6. **Assets** — Ask for logo URL, seal/emblem image, recipient photo, or signature image. These can't be inferred and significantly affect the layout.
 
 ## Dimensions
 
@@ -93,4 +91,4 @@ For generating multiple certificates with different recipient data, make separat
 5. Logo/seal is positioned consistently
 6. All external image URLs (photos, logos) are publicly accessible
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

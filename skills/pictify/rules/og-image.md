@@ -9,19 +9,20 @@ metadata:
 
 OG images appear when a link is shared on Facebook, LinkedIn, Slack, Discord, iMessage, WhatsApp, and most other platforms. They are the most common use case for HTML-to-image generation.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Color palette / mood** — Light or dark? Warm or cool? Brand colors if they have them?
-- **Layout style** — Based on their content, suggest 2-3 layout approaches. Reason from context: a developer tutorial calls for a dark, code-themed layout with monospace accents; a lifestyle blog calls for airy whitespace with a hero photo; a SaaS product page calls for a clean gradient with a product screenshot.
-- **Typography feel** — Modern and clean? Editorial and elegant? Bold and punchy?
-- **Visual elements** — Background photo, illustration, abstract shapes, or solid/gradient?
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has provided: the content/topic AND any visual direction (brand colors, a reference, mood words like "minimal" or "bold"). That's enough to make confident design choices.
-- **Ask** if the user gives only a topic with zero visual direction (e.g., "make me an OG image for my blog post"). In that case, ask about color palette/mood — it's the single highest-leverage design decision. Suggest 2-3 directions inferred from their topic, not a generic list.
+**OG image-specific decisions to present:**
+1. **Dimensions** — Default to 1200x630 (universal). Only present alternatives if the user's context suggests a non-standard format (e.g., Twitter `summary` card → 800x800).
+2. **Color palette** — Present 2-3 palette options inferred from the content topic, brand, or industry. A developer tutorial → dark/code-themed palettes; a lifestyle blog → warm/airy palettes; a SaaS product → clean gradients with brand colors.
+3. **Typography** — Present 2-3 font pairings suited to the tone. Editorial content → serif headlines; tech/SaaS → geometric sans-serif; bold/punchy → heavy weights.
+4. **Layout** — Present 2-3 layouts suited to the content:
+   - Gradient background + centered text (clean, always readable)
+   - Left text / right image split (good when there's a relevant visual)
+   - Full-bleed image with text overlay (needs dark gradient for readability)
+   - Branded card (logo in corner, title centered, brand colors)
+5. **Assets** — Ask if they have a logo URL, brand mark, or image to include. These can't be inferred.
 
 ## Dimensions
 
@@ -86,7 +87,7 @@ Before calling the API, verify:
 5. Text is readable at 600px display width (the common embed size)
 6. Sufficient contrast between text and background
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.
 
 ## Platform-Specific Notes
 

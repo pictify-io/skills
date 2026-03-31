@@ -9,17 +9,22 @@ metadata:
 
 Pictify can capture screenshots of live web pages by passing a `url` parameter instead of `html`. The renderer loads the page in a headless Chromium browser and captures it.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request is missing key details, ask before capturing:
+**Always present options before capturing.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-- **URL** — Must be provided. If missing, ask. Must be publicly accessible (not localhost, not behind login).
-- **Device view** — If the user hasn't specified, ask whether they want a desktop, tablet, or mobile viewport. Suggest the most relevant option based on context (e.g., if they're capturing a responsive landing page, suggest both desktop and mobile).
-- **Specific section** — If the user says "screenshot the pricing section" or similar, use the `selector` parameter. If they want the full above-fold view, use appropriate height. Ask only if their intent is ambiguous.
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has provided: a URL AND a clear intent (full page, specific section, or device type). Default to desktop 1440x900 if no device specified.
-- **Ask** if the URL is missing (always required) or if the intent is ambiguous (e.g., "screenshot this" with no indication of what part or device).
+**Screenshot-specific decisions to present:**
+1. **URL** — Confirm the URL to capture. If missing, ask for it. Must be publicly accessible (not localhost, not behind login).
+2. **Device viewport** — Present options with dimensions:
+   - Desktop (1440x900) — recommended for most pages
+   - Tablet (768x1024) — good for responsive testing
+   - Mobile (375x812) — iPhone-sized viewport
+   Suggest the most relevant option based on context (e.g., responsive landing page → offer both desktop and mobile).
+3. **Capture area** — Present options:
+   - Above-the-fold (default height) — captures what's visible without scrolling
+   - Specific section — if they mention a section, confirm the CSS selector to use
+   - Full viewport — larger height to capture more content
+4. **Output format** — Default to PNG. Present JPEG/WebP as alternatives if file size matters.
 
 ## API Call
 

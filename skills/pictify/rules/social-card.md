@@ -9,19 +9,20 @@ metadata:
 
 Social cards are images designed for specific social media platforms. Unlike OG images (which are auto-embedded from link metadata), social cards are images directly uploaded or attached to posts.
 
-## Before You Start
+## Before You Start — Interactive Design Brief
 
-If the user's request lacks design direction, ask about **visual design choices** before generating. Do not ask about copy — you can write that yourself.
+**Always present a design brief with options before generating.** Follow the interactive design brief protocol in [SKILL.md](../SKILL.md). Present decisions in a single scannable message so the user can approve or adjust in one response.
 
-Focus on:
-- **Target platform and format** — This determines dimensions. If unclear, ask which platform and format. Reason from context: "LinkedIn carousel" means square 1080x1080; "Twitter announcement" means landscape 1200x675.
-- **Color palette / mood** — Suggest contextually relevant palettes. A fintech quote card needs subdued blues and sharp type; a fitness brand announcement needs bold, high-energy colors; a developer tool tip card works with dark backgrounds and syntax-highlight accent colors.
-- **Layout style** — Based on content type, propose 2-3 layout directions. A quote card needs large centered text with attribution; a data point card needs a dominant number with context below; an announcement card needs a label + headline + one-liner stack.
-- **Typography feel** — Should it feel bold and attention-grabbing or refined and minimal?
-
-**When to ask vs. proceed:**
-- **Proceed without asking** if the user has specified: the platform AND the content/message AND any visual direction. That's enough.
-- **Ask** if the platform is missing (dimensions depend on it) or if the user gives zero visual direction. Ask about the single most impactful missing input — usually the platform/format first, then color palette if that's already clear.
+**Social card-specific decisions to present:**
+1. **Platform and format** — This determines dimensions. Present the relevant options from the dimensions table below. Infer from context when possible (e.g., "LinkedIn carousel" → 1080x1080) but always confirm.
+2. **Color palette** — Present 2-3 palette options inferred from the brand, content type, and platform norms. A fintech quote card → subdued blues; a fitness brand → bold, high-energy colors; a developer tool → dark backgrounds with syntax-highlight accents.
+3. **Typography** — Present 2-3 font pairings suited to the tone. Bold and attention-grabbing vs. refined and minimal vs. techy and modern.
+4. **Layout** — Present 2-3 layout directions suited to the content type:
+   - Quote card → large centered text with attribution
+   - Data point card → dominant number with context below
+   - Announcement card → label + headline + one-liner stack
+   - Tip/how-to → numbered step with icon
+5. **Assets** — Ask if they have a logo, headshot, product image, or brand mark to include.
 
 ## Platform Dimensions
 
@@ -125,4 +126,4 @@ When creating the same content for multiple platforms, make separate `POST /imag
 4. For Instagram stories: key content is in the vertical center 60%
 5. Fonts loaded via `<link>` tag
 
-See [validation-checklist.md](validation-checklist.md) for the full 9-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 11-point check.

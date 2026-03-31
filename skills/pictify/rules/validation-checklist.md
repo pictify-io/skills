@@ -9,7 +9,7 @@ metadata:
 
 Run through this checklist BEFORE every `POST /image` call. These checks catch the most common rendering failures.
 
-## The 9-Point Pre-Flight Check
+## The 11-Point Pre-Flight Check
 
 Before calling the Pictify API with HTML, verify ALL of these:
 
@@ -30,6 +30,13 @@ Before calling the Pictify API with HTML, verify ALL of these:
 8. **Width and height are within API limits (1-4000px each)** — The API rejects dimensions outside this range with a 400 error.
 
 9. **No `<script>` tags — JavaScript is NOT executed** — The renderer captures a static HTML/CSS render only. Any content that depends on JavaScript (DOM manipulation, framework rendering, dynamic data fetching) will not appear in the output. All content must be expressed in HTML and CSS alone.
+
+10. **Use inline SVG icons instead of emojis** — Emoji rendering varies across operating systems and renderers, often producing low-resolution, inconsistent, or missing glyphs. Use inline `<svg>` elements or icon libraries (e.g., Heroicons, Lucide, Font Awesome via CDN) instead. SVGs render crisply at any size and look consistent across all environments.
+
+11. **Design language matches the given context** — The visual style (colors, typography, spacing, imagery, tone) must be appropriate for the subject matter, industry, and audience. A fintech dashboard image needs clean lines, muted blues, and professional sans-serif fonts — not playful gradients and rounded comic-style type. A children's education certificate needs warm colors and friendly shapes — not a dark corporate palette. Before rendering, verify: Does the color palette fit the industry/brand? Does the typography match the formality level? Does the overall visual tone align with the audience and purpose?
+    - **If the user mentions a brand** (e.g., "Stripe", "Notion", "Nike"), adopt that brand's design language — its color palette, typography style, spacing conventions, and visual tone. Research or infer the brand's aesthetic and apply it consistently. A "Stripe-style" image means clean whites, blue-purple accents, rounded UI elements, and Inter/system fonts. A "Nike-style" banner means bold black-and-white contrasts, Futura-like condensed type, and high-energy imagery.
+    - **If the user provides explicit brand assets** (colors, logo URL, fonts, reference images, mood keywords), those take highest priority and override all defaults.
+    - **If no brand or visual direction is given**, ask the user for their preference before proceeding. Ask a single, focused question: "What brand or visual style should this follow?" — offer 2-3 contextually relevant suggestions based on the content (e.g., for a SaaS pricing card: "Should this follow your brand's style, or would you prefer a clean minimal look like Stripe/Linear?"). Do not fall back to a generic template without asking.
 
 ## Common Rendering Gotchas
 
