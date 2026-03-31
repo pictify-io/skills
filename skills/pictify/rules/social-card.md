@@ -125,4 +125,4 @@ When creating the same content for multiple platforms, make separate `POST /imag
 4. For Instagram stories: key content is in the vertical center 60%
 5. Fonts loaded via `<link>` tag
 
-See [validation-checklist.md](validation-checklist.md) for the full 8-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 9-point check.

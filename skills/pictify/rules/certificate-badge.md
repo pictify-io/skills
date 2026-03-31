@@ -93,4 +93,4 @@ For generating multiple certificates with different recipient data, make separat
 5. Logo/seal is positioned consistently
 6. All external image URLs (photos, logos) are publicly accessible
 
-See [validation-checklist.md](validation-checklist.md) for the full 8-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 9-point check.

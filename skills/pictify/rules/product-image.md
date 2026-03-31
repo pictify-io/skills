@@ -102,4 +102,4 @@ Or as a background:
 4. Background is clean and doesn't compete with the product
 5. All external image URLs resolve correctly
 
-See [validation-checklist.md](validation-checklist.md) for the full 8-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 9-point check.

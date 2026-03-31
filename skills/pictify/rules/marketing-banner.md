@@ -118,4 +118,4 @@ For generating multiple banner sizes from the same content, make separate `POST 
 4. Brand logo/name is present
 5. For ad banners: confirm the design looks good at 1:1 scale (not zoomed in)
 
-See [validation-checklist.md](validation-checklist.md) for the full 8-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 9-point check.

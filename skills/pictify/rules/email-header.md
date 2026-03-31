@@ -49,7 +49,7 @@ For sharp display on retina/HiDPI screens, generate at 2x (1200x400 for a 600x20
   "html": "<your email header HTML>",
   "width": 600,
   "height": 200,
-  "fileExtension": "jpg"
+  "fileExtension": "jpeg"
 }
 ```
 
@@ -59,11 +59,11 @@ For retina 2x:
   "html": "<your email header HTML with 1200px CSS root width>",
   "width": 1200,
   "height": 400,
-  "fileExtension": "jpg"
+  "fileExtension": "jpeg"
 }
 ```
 
-Use `jpg` format for email images — smaller file size improves email deliverability.
+Use `jpeg` format for email images — smaller file size improves email deliverability.
 
 **Response**:
 ```json
@@ -126,7 +126,7 @@ Email images should be simpler than web images:
 2. Text is legible at small sizes (emails are viewed on mobile at ~300px width)
 3. Design works on both light and dark backgrounds
 4. Image has its own background (not transparent/dependent on email bg)
-5. File format is jpg for smaller file size (critical for email deliverability)
+5. File format is jpeg for smaller file size (critical for email deliverability)
 6. For retina: verify the image renders correctly at 2x dimensions
 
-See [validation-checklist.md](validation-checklist.md) for the full 8-point check.
+See [validation-checklist.md](validation-checklist.md) for the full 9-point check.

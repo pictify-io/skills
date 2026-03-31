@@ -40,12 +40,26 @@ Use this skill whenever you are generating images from HTML/CSS or URL screensho
 }
 ```
 
+### Example curl call
+
+```bash
+curl -X POST https://api.pictify.io/image \
+  -H "Authorization: Bearer $PICTIFY_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "html": "<html><head><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap\" rel=\"stylesheet\"></head><body style=\"margin:0;padding:0;\"><div style=\"position:absolute;top:0;left:0;width:1200px;height:630px;background:#1a1a2e;display:flex;align-items:center;justify-content:center;\"><h1 style=\"font-family:Inter,sans-serif;color:#fff;font-size:64px;\">Hello World</h1></div></body></html>",
+    "width": 1200,
+    "height": 630,
+    "fileExtension": "png"
+  }'
+```
+
 **Parameters**:
 - `html` (string) — HTML/CSS content to render. Include inline CSS or `<style>` tags. Mutually exclusive with `url`.
 - `url` (string) — Public URL to screenshot. Mutually exclusive with `html`.
 - `width` (number, 1-4000, default 1200) — Image width in pixels.
 - `height` (number, 1-4000, default 630) — Image height in pixels.
-- `fileExtension` (string, default "png") — Output format: `png`, `jpg`, `jpeg`, or `webp`.
+- `fileExtension` (string, default "png") — Output format: `png`, `jpeg`, or `webp`.
 - `selector` (string, optional) — CSS selector to capture a specific element instead of the full page.
 
 ### Response

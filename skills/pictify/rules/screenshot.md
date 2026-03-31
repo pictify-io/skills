@@ -49,7 +49,7 @@ If the user's request is missing key details, ask before capturing:
 - `width`: Sets the viewport width — the page will render at this width (1-4000px)
 - `height`: Sets the viewport height — the capture will include this much of the page (1-4000px)
 - `selector`: Optional CSS selector to capture only a specific element on the page
-- `fileExtension`: `png` (default), `jpg`, `jpeg`, or `webp`
+- `fileExtension`: `png` (default), `jpeg`, or `webp`
 
 ## Key Constraints
 
