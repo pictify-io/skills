@@ -5,9 +5,9 @@
 [![npm version](https://img.shields.io/npm/v/@pictify/agent-skill.svg)](https://www.npmjs.com/package/@pictify/agent-skill)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Agent skills for [Pictify](https://pictify.io) — generate images from HTML/CSS with AI agents.
+Agent skills for [Pictify](https://pictify.io) — generate images and short videos with AI agents.
 
-OG images, social cards, banners, screenshots, certificates, product images, email headers, and presentation slides — all from natural language.
+OG images, social cards, banners, screenshots, certificates, product images, email headers, presentation slides, reusable HTML templates, and AI-generated video templates — all from natural language.
 
 Works with Claude Code, Cursor, Windsurf, and any agent that supports the [open skills standard](https://skills.sh).
 
@@ -71,18 +71,19 @@ The skill automatically detects the key from the environment. No additional conf
 
 ## What it does
 
-Once installed, your AI agent gets design-aware guidance for generating images with the Pictify API. Just ask:
+Once installed, your AI agent gets design-aware guidance for generating images and videos with the Pictify API. Just ask:
 
 - "Create an OG image for my blog post about serverless functions"
 - "Make a Twitter card announcing our new pricing"
 - "Screenshot stripe.com at desktop and mobile viewports"
 - "Generate a certificate for course completion"
 - "Create a product card for our headphones at $149"
+- "Make a 5-second product launch teaser video"
 
 The skill handles:
 
 - **Design clarification** — asks about visual style, color palette, and layout before generating, with context-aware suggestions (not generic lists)
-- **Pre-render validation** — 8-point checklist that catches wrong dimensions, missing fonts, and broken images before the API call
+- **Pre-render validation** — 11-point checklist that catches wrong dimensions, missing fonts, and broken images before the API call
 - **Platform dimensions** — correct sizes for every platform (OG 1200x630, Instagram 1080x1080, Twitter 1200x675, etc.)
 - **CSS patterns** — reliable patterns for gradients, flexbox layouts, glassmorphism, text clamping, and more
 - **Typography** — Google Fonts loading, font pairings, and type scales for each image size
@@ -101,19 +102,21 @@ The skill handles:
 | `rules/product-image.md` | E-commerce product images, catalogs |
 | `rules/email-header.md` | Email banners with dark mode and retina support |
 | `rules/presentation-slide.md` | Slides, pitch decks, social carousels |
+| `rules/html-templates.md` | Reusable Handlebars HTML templates — create, render, live preview |
+| `rules/video-templates.md` | AI-generated video templates — generate from a prompt, render to mp4/gif |
 | **References** | |
-| `rules/validation-checklist.md` | Pre-render validation (8-point checklist) |
+| `rules/validation-checklist.md` | Pre-render validation (11-point checklist) |
 | `rules/dimensions-reference.md` | Platform dimension presets and safe zones |
 | `rules/css-patterns.md` | CSS that renders reliably in Pictify |
 | `rules/fonts-and-typography.md` | Font loading, pairings, and type scales |
 
 ## How it works
 
-The skill uses the Pictify HTML-to-Image API (`POST https://api.pictify.io/image`). It instructs the AI agent to:
+The skill uses the Pictify API — `POST https://api.pictify.io/image` for one-off images, `/templates` for reusable HTML templates, and `/video/templates/generate` + `/video/templates/:uid/render` for AI-generated video. It instructs the AI agent to:
 
 1. Clarify design intent (colors, layout, typography — not copy)
-2. Generate HTML/CSS following proven rendering patterns
-3. Validate against an 8-point checklist before calling the API
+2. Generate HTML/CSS following proven rendering patterns, or a text prompt for video
+3. Validate against an 11-point checklist before calling the image API
 4. Handle errors with specific recovery actions
 
 No MCP server required. The skill makes direct HTTP calls to the Pictify API.

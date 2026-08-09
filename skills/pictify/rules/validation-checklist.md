@@ -27,7 +27,7 @@ Before calling the Pictify API with HTML, verify ALL of these:
 
 7. **No CSS that depends on viewport units** — `vw`, `vh`, `vmin`, `vmax` may behave unpredictably. Use fixed `px` values instead. Percentages relative to a fixed-size parent are fine.
 
-8. **Width and height are within API limits (1-4000px each)** — The API rejects dimensions outside this range with a 400 error.
+8. **Width and height are reasonable, up to 4096px each** — There's no rejection for going over; the API silently clamps to 4096px, so an oversized request just renders smaller than intended instead of failing loudly. Keep requested dimensions accurate to avoid a silently-wrong output.
 
 9. **No `<script>` tags — JavaScript is NOT executed** — The renderer captures a static HTML/CSS render only. Any content that depends on JavaScript (DOM manipulation, framework rendering, dynamic data fetching) will not appear in the output. All content must be expressed in HTML and CSS alone.
 
