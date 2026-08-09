@@ -1,13 +1,13 @@
 ---
 name: pictify
-description: Generate images from HTML/CSS using Pictify — OG images, social cards, banners, screenshots, certificates, product images, email headers, and presentation slides. Includes pre-render validation, platform dimension presets, CSS patterns, and design guidance. Use when the user mentions 'pictify,' 'html to image,' 'generate image,' 'create image,' 'og image,' 'social card,' 'banner image,' or 'screenshot.'
+description: Generate images and short videos from HTML/CSS or a text prompt using Pictify — OG images, social cards, banners, screenshots, certificates, product images, email headers, presentation slides, reusable Handlebars HTML templates, and AI-generated video templates. Includes pre-render validation, platform dimension presets, CSS patterns, and design guidance. Use when the user mentions 'pictify,' 'html to image,' 'generate image,' 'create image,' 'og image,' 'social card,' 'banner image,' 'screenshot,' 'pictify template,' 'handlebars template,' or 'pictify video.'
 metadata:
-  tags: pictify, html-to-image, image-generation, og-image, social-card, banner, screenshot, certificate, generate-image
+  tags: pictify, html-to-image, image-generation, og-image, social-card, banner, screenshot, certificate, generate-image, handlebars, templates, video
 ---
 
 ## When to use
 
-Use this skill whenever you are generating images from HTML/CSS or URL screenshots using the Pictify API.
+Use this skill whenever you are generating images or short videos from HTML/CSS, URL screenshots, or a text prompt using the Pictify API.
 
 ## API Overview
 
@@ -23,11 +23,18 @@ Use this skill whenever you are generating images from HTML/CSS or URL screensho
    - Go to https://pictify.io/dashboard/api-tokens
    - Create and copy a token
 
-### Endpoint
+### Endpoints
 
 | Method | Endpoint | Purpose |
 |--------|----------|---------|
-| POST | `/image` | Generate image from HTML/CSS or a URL screenshot |
+| POST | `/image` | One-shot image from HTML/CSS or a URL screenshot |
+| POST | `/templates` | Create a reusable HTML/Handlebars template (`engine: "html"`) |
+| POST | `/templates/:uid/render` | Render a saved template with variable values |
+| POST | `/templates/preview` | Live preview from in-flight HTML body (no quota consumed) |
+| POST | `/video/templates/generate` | AI-author a video template from a text prompt |
+| POST | `/video/templates/:uid/render` | Render a video template to mp4 or gif |
+
+Use `POST /image` for one-off image renders. Use the HTML template endpoints when the same design will be rendered repeatedly with different values (personalized cards, batch jobs, OG images per blog post) — see [rules/html-templates.md](rules/html-templates.md). For video, see [rules/video-templates.md](rules/video-templates.md).
 
 ### Request body
 
@@ -57,9 +64,9 @@ curl -X POST https://api.pictify.io/image \
 **Parameters**:
 - `html` (string) — HTML/CSS content to render. Include inline CSS or `<style>` tags. Mutually exclusive with `url`.
 - `url` (string) — Public URL to screenshot. Mutually exclusive with `html`.
-- `width` (number, 1-4000, default 1200) — Image width in pixels.
-- `height` (number, 1-4000, default 630) — Image height in pixels.
-- `fileExtension` (string, default "png") — Output format: `png`, `jpeg`, or `webp`.
+- `width` (number, default 1280) — Image width in pixels. Set explicitly for anything other than a generic screenshot — e.g. 1200 for standard OG images.
+- `height` (number, default 720) — Image height in pixels. Set explicitly to match your target platform's dimensions.
+- `fileExtension` (string, default "png") — Output format: `png`, `jpeg` (or `jpg`), or `webp`.
 - `selector` (string, optional) — CSS selector to capture a specific element instead of the full page.
 
 ### Response
@@ -67,7 +74,8 @@ curl -X POST https://api.pictify.io/image \
 ```json
 {
   "url": "https://cdn.pictify.io/...",
-  "id": "img_abc123"
+  "id": "img_abc123",
+  "createdAt": "2026-08-09T12:00:00.000Z"
 }
 ```
 
@@ -139,6 +147,8 @@ Read the relevant rule file for your use case, then read the shared reference fi
 - [rules/product-image.md](rules/product-image.md) - E-commerce product images, catalog cards, comparison graphics
 - [rules/email-header.md](rules/email-header.md) - Email header and banner images with email-client constraints
 - [rules/presentation-slide.md](rules/presentation-slide.md) - Presentation slides, pitch deck visuals, keynote-style graphics
+- [rules/html-templates.md](rules/html-templates.md) - Reusable Handlebars HTML templates with `{{#each}}`, `{{#if}}`, helper safelist, and live preview
+- [rules/video-templates.md](rules/video-templates.md) - AI-generated video templates: generate from a prompt, then render to mp4/gif
 
 ### Reference rules
 
@@ -151,11 +161,13 @@ Read the relevant rule file for your use case, then read the shared reference fi
 
 When `POST /image` returns an error, take the following action:
 
+The response body on error is `{ error, code, retriable }` — `error` is a human-readable message, `code` is the machine-readable reason.
+
 | Status | Meaning | What to do |
 |--------|---------|------------|
-| 400 | Invalid request | Read the `detail` and `errors` fields from the response body. They describe exactly what's wrong (e.g., "width must be between 1 and 4000"). Fix the request and retry. |
-| 401 | Invalid or expired API key | Tell the user their API key is invalid. Direct them to https://pictify.io/dashboard/api-tokens to create a new one. Do not retry. |
-| 402 | Plan quota exceeded | Tell the user they've hit their plan's render limit. They can wait for the quota to reset or upgrade their plan at https://pictify.io/dashboard. Do not retry. |
-| 408 | Request timeout | The HTML was too complex or external assets took too long to load. Simplify the HTML (remove external images, reduce DOM complexity), then retry once. |
-| 429 | Rate limited | Wait the number of seconds in the `Retry-After` response header, then retry the same request. If no header, wait 5 seconds. |
-| 5xx | Server error | Retry up to 2 times with increasing delays (2 seconds, then 4 seconds). If still failing after retries, tell the user the service is temporarily unavailable and to try again later. |
+| 400 | Invalid request | Read the `error` field — it describes exactly what's wrong. Fix the request and retry. |
+| 401 | Invalid or missing API key | Tell the user their API key is invalid. Direct them to https://pictify.io/dashboard/api-tokens to create a new one. Do not retry. |
+| 429 | Plan/team render quota exceeded (`code: "quota_exceeded"`, or `"spending_cap_reached"` if overages are on but capped) | Tell the user they've hit their render limit for the billing cycle. They can wait for it to reset or upgrade their plan at https://pictify.io/dashboard. There's no `Retry-After` header for this — it's a quota limit, not a short-window throttle. Do not retry. |
+| 503 | Renderer temporarily exhausted or a retriable failure (`retriable: true`) | Retry up to 2 times with increasing delays (2 seconds, then 4 seconds). |
+| 504 | Render timed out | The HTML was too complex or external assets (fonts, images) took too long to load. Simplify the HTML (remove external images, reduce DOM complexity), then retry once. |
+| 5xx (other) | Server error | Retry up to 2 times with increasing delays (2 seconds, then 4 seconds). If still failing, tell the user the service is temporarily unavailable and to try again later. |

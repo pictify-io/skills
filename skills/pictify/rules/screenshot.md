@@ -51,8 +51,8 @@ Pictify can capture screenshots of live web pages by passing a `url` parameter i
 ### Parameters
 
 - `url`: The full URL (must be publicly accessible via `http://` or `https://`). **Mutually exclusive** with `html`.
-- `width`: Sets the viewport width — the page will render at this width (1-4000px)
-- `height`: Sets the viewport height — the capture will include this much of the page (1-4000px)
+- `width`: Sets the viewport width — the page will render at this width. Silently clamped to 4096px if you go higher; no error either way.
+- `height`: Sets the viewport height — the capture will include this much of the page. Silently clamped to 4096px.
 - `selector`: Optional CSS selector to capture only a specific element on the page
 - `fileExtension`: `png` (default), `jpeg`, or `webp`
 
